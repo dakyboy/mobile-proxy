@@ -54,12 +54,14 @@ public class MainActivity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!portEditText.getText().toString().matches("\\d+")){
+                String portString = portEditText.getText().toString();
+                if (!portString.matches("\\d+")){
                     proxyStatusTextView.setText(getString(R.string.enter_the_port));
                     proxyURLTextView.setText("");
                     return;
                 }
-                int port = Integer.parseInt(portEditText.getText().toString());
+
+                int port = Integer.parseInt(portString);
                 String ip = getIPAddress(true);
                 if (ip.trim().startsWith("10.")) {
                     proxyStatusTextView.setText(getString(R.string.turn_on_tethering));
